@@ -19,8 +19,8 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release --project MyTestDotnet/MyTestDotnet.csproj
+        run: dotnet build --configuration Release --project MyTestDotnet.csproj
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp --project MyTestDotnet/MyTestDotnet.csproj
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp --project MyTestDotnet.csproj
 
