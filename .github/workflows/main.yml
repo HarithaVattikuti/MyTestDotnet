@@ -2,13 +2,15 @@ name: Build and deploy ASP.Net Core app to Azure Web App - DotNetNC
 
 
 on:
+  push:
+    branches: ["main"]
   workflow_dispatch:
 
  
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
 
