@@ -1,0 +1,32 @@
+name: Test old version
+
+on:
+  [workflow_dispatch]:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-14, macos-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check current .NET info
+        run: |
+          dotnet --info || true
+          which dotnet || true
+      - name: Create global.json to specify SDK version
+        run: |
+          echo '{ "sdk": { "version": "6.0.100", "rollForward": "latestFeature" } }' > global.json
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '6.0.x'   # This ensures the latest .NET 6.x SDK is installed
+
+      - name: Check .NET info after setup
+        run: |
+          dotnet --info || true
+          which dotnet || true
