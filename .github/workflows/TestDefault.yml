@@ -25,8 +25,6 @@ env:
   DOTNET_VERSION: '8'                 # set this to the .NET Core version to use
 
 on:
-  push:
-    branches: [ "main" ]
   workflow_dispatch:
 
 permissions:
