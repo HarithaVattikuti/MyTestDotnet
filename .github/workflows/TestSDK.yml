@@ -6,67 +6,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  # build:
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       os: [ubuntu-latest,ubuntu-22.04, ubuntu-20.04, windows-latest, windows-2019, macos-13, macos-latest]    
-    
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - name: Set up .NET Core
-  #       uses: actions/setup-dotnet@v4
-  #       with:
-  #         dotnet-version: "8.0.101"
-
-  # buildon8:
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       os: [ubuntu-latest,ubuntu-22.04, ubuntu-20.04, windows-latest, windows-2019, macos-13, macos-latest]    
-    
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - name: Set up .NET Core
-  #       uses: actions/setup-dotnet@v4
-  #       with:
-  #         dotnet-version: "8.x"
-
-  # buildon9ox:
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       os: [ubuntu-latest,ubuntu-22.04, ubuntu-20.04, windows-latest, windows-2019, macos-13, macos-latest]    
-    
-  #   steps:
-  #   - uses: actions/checkout@v4
-
-  #   - uses: actions/setup-dotnet@v4
-  #     with:
-  #       dotnet-version: '9.0.x'
-
-  #   - name: Test
-  #     run: dotnet test ${{ matrix.project }} --configuration Release
-
-  # buildon9x:
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       os: [ubuntu-latest,ubuntu-22.04, ubuntu-20.04, windows-latest, windows-2019, macos-13, macos-latest]    
-    
-  #   steps:
-  #   - uses: actions/checkout@v4
-
-  #   - uses: actions/setup-dotnet@v4
-  #     with:
-  #       dotnet-version: '9.x'
-
   buildonlatest:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -86,4 +25,5 @@ jobs:
           10.0.x
           10.0.100-preview.2.25164.34
           10.0.100-preview.3.25201.16
+          10.0.3xx
 
