@@ -1,40 +1,73 @@
 name: Test SDK
 
 on:
+  schedule:
+    - cron: '0 13 * * *' # Runs every day at 7:00 AM CST (UTC-6)
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest,ubuntu-22.04, ubuntu-20.04, windows-latest, windows-2019, macos-13, macos-latest]    
+  # build:
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       os: [ubuntu-latest,ubuntu-22.04, ubuntu-20.04, windows-latest, windows-2019, macos-13, macos-latest]    
     
-    steps:
-      - uses: actions/checkout@v4
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "8.0.101"
+  #     - name: Set up .NET Core
+  #       uses: actions/setup-dotnet@v4
+  #       with:
+  #         dotnet-version: "8.0.101"
 
-  buildon8:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest,ubuntu-22.04, ubuntu-20.04, windows-latest, windows-2019, macos-13, macos-latest]    
+  # buildon8:
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       os: [ubuntu-latest,ubuntu-22.04, ubuntu-20.04, windows-latest, windows-2019, macos-13, macos-latest]    
     
-    steps:
-      - uses: actions/checkout@v4
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "8.x"
+  #     - name: Set up .NET Core
+  #       uses: actions/setup-dotnet@v4
+  #       with:
+  #         dotnet-version: "8.x"
 
-  buildon9ox:
+  # buildon9ox:
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       os: [ubuntu-latest,ubuntu-22.04, ubuntu-20.04, windows-latest, windows-2019, macos-13, macos-latest]    
+    
+  #   steps:
+  #   - uses: actions/checkout@v4
+
+  #   - uses: actions/setup-dotnet@v4
+  #     with:
+  #       dotnet-version: '9.0.x'
+
+  #   - name: Test
+  #     run: dotnet test ${{ matrix.project }} --configuration Release
+
+  # buildon9x:
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       os: [ubuntu-latest,ubuntu-22.04, ubuntu-20.04, windows-latest, windows-2019, macos-13, macos-latest]    
+    
+  #   steps:
+  #   - uses: actions/checkout@v4
+
+  #   - uses: actions/setup-dotnet@v4
+  #     with:
+  #       dotnet-version: '9.x'
+
+  buildonlatest:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -46,22 +79,9 @@ jobs:
 
     - uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '9.0.x'
-
-    - name: Test
-      run: dotnet test ${{ matrix.project }} --configuration Release
-
-  buildon9x:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest,ubuntu-22.04, ubuntu-20.04, windows-latest, windows-2019, macos-13, macos-latest]    
-    
-    steps:
-    - uses: actions/checkout@v4
-
-    - uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '9.x'
+        dotnet-version: |
+          6.0.x
+          8.0.x
+          9.0.x
+          10.0.x
 
