@@ -1,8 +1,8 @@
 name: Test SDK
 
 on:
-  schedule:
-    - cron: '0 13 * * *' # Runs every day at 7:00 AM CST (UTC-6)
+  #schedule:
+  #  - cron: '0 13 * * *' # Runs every day at 7:00 AM CST (UTC-6)
   workflow_dispatch:
 
 jobs:
