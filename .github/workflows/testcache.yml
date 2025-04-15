@@ -1,0 +1,66 @@
+name: Test cache version
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  testv4:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-14, macos-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x' 
+          cache: true
+
+  testv3:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-14, macos-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x' 
+          cache: true
+
+  testv34:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-14, macos-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v3.4.0
+        with:
+          dotnet-version: '8.x' 
+          cache: true
+  
+  testv340:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-14, macos-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@a6d1e7b915ae77c8e9b38fc13c33c087a9e98437
+        with:
+          dotnet-version: '8.x' 
+          cache: true
