@@ -20,7 +20,8 @@ jobs:
         with:
           dotnet-version: '8.x' 
           cache: true
-      
+      - run: dotnet restore --locked-mode
+
 
   testv3:
     runs-on: ${{ matrix.os }}
@@ -37,6 +38,8 @@ jobs:
         with:
           dotnet-version: '7.x' 
           cache: true
+      - run: dotnet restore --locked-mode
+
 
   testv34:
     runs-on: ${{ matrix.os }}
@@ -53,6 +56,8 @@ jobs:
         with:
           dotnet-version: '7.x' 
           cache: true
+      - run: dotnet restore --locked-mode
+
   
   testv340:
     runs-on: ${{ matrix.os }}
@@ -69,3 +74,5 @@ jobs:
         with:
           dotnet-version: '7.x' 
           cache: true
+      - run: dotnet restore --locked-mode
+
