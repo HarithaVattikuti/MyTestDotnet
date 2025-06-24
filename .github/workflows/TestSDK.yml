@@ -23,6 +23,7 @@ jobs:
           8.0.x
           9.0.x
           10.0.x
+          3.1.x
 
   testonlatest:
     runs-on: ${{ matrix.os }}
@@ -41,4 +42,4 @@ jobs:
           8.0.x
           9.0.x
           10.0.x
-
+          3.1.x
