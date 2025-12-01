@@ -14,6 +14,9 @@ jobs:
       - name: Print default DOTNET_ROOT
         run: echo "Before:$DOTNET_ROOT"
 
+      - name: Validate dotnet runs
+        run: dotnet --info
+        
       - name: Clear DOTNET_ROOT from GitHub Actions environment
         run: echo "DOTNET_ROOT=" >> $GITHUB_ENV
 
