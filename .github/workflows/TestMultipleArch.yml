@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Install .NET 8 on ARM64
         run: |
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 8 --architecture arm64
+          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture arm64
 
       - name: Verify .NET installation
         run: dotnet --info
@@ -23,7 +23,7 @@ jobs:
 
       - name: Install .NET 8 on x64
         run: |
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 8 --architecture x64
+          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture x64
 
       - name: Verify .NET installation
         run: dotnet --info
