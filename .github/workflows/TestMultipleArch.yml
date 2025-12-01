@@ -5,12 +5,12 @@ on:
 
 jobs:
   setup-dotnet:
-    runs-on: macos-latest
+    runs-on: windows-latest
 
     steps:
-      - name: Install .NET 6 on ARM64
+      - name: Install .NET 6 on x86
         run: |
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture arm64 --install-dir $HOME/.dotnet-arm64
+          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture x86 --install-dir $HOME/.dotnet-x86
 
       - name: Verify .NET installation
         run: dotnet --info
@@ -18,8 +18,8 @@ jobs:
       # - name: Add .NET to PATH
       #   run: echo "$HOME/.dotnet" >> $GITHUB_PATH
 
-      - name: Verify .NET installation
-        run: dotnet --info
+      # - name: Verify .NET installation
+      #   run: dotnet --info
 
       - name: Install .NET 6 on x64
         run: |
