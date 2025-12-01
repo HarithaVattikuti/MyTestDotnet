@@ -8,22 +8,22 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Install .NET 8 on ARM64
+      - name: Install .NET 6 on ARM64
         run: |
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture arm64
+          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture arm64 --install-dir $HOME/.dotnet-arm64
 
       - name: Verify .NET installation
         run: dotnet --info
         
-      - name: Add .NET to PATH
-        run: echo "$HOME/.dotnet" >> $GITHUB_PATH
+      # - name: Add .NET to PATH
+      #   run: echo "$HOME/.dotnet" >> $GITHUB_PATH
 
       - name: Verify .NET installation
         run: dotnet --info
 
-      - name: Install .NET 8 on x64
+      - name: Install .NET 6 on x64
         run: |
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture x64
+          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture x64 --install-dir $HOME/.dotnet-x64
 
       - name: Verify .NET installation
         run: dotnet --info
