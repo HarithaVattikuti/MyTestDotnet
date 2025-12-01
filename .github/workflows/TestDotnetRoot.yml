@@ -4,7 +4,7 @@ on: [workflow_dispatch]
 
 jobs:
   test:
-    runs-on: macos-latest
+    runs-on: macos-15-intel
     
     # env:
     #   DOTNET_INSTALL_DIR: /Users/runner/custom
