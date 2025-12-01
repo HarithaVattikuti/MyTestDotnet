@@ -1,0 +1,30 @@
+name: Test Multiple Arch
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup-dotnet:
+    runs-on: macos-latest
+
+    steps:
+      - name: Install .NET 8 on ARM64
+        run: |
+          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 8 --architecture arm64
+
+      - name: Verify .NET installation
+        run: dotnet --info
+        
+      - name: Add .NET to PATH
+        run: echo "$HOME/.dotnet" >> $GITHUB_PATH
+
+      - name: Verify .NET installation
+        run: dotnet --info
+
+      - name: Install .NET 8 on x64
+        run: |
+          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 8 --architecture x64
+
+      - name: Verify .NET installation
+        run: dotnet --info
+        
