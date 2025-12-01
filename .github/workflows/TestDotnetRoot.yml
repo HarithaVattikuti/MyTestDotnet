@@ -6,9 +6,9 @@ jobs:
   test:
     runs-on: macos-15-intel
     
-    # env:
-    #   DOTNET_INSTALL_DIR: /Users/runner/custom
-    #   DOTNET_ROOT: /conflicting/path
+    env:
+      DOTNET_INSTALL_DIR: /Users/runner/custom
+      DOTNET_ROOT: /conflicting/path
 
     steps:
       - name: Print default DOTNET_ROOT
