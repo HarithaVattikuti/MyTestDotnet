@@ -15,7 +15,7 @@ jobs:
 
       - name: Verify x86 .NET installation
         run: |
-          "$env:USERPROFILE\.dotnet-x86\dotnet" --info
+          & "$env:USERPROFILE\.dotnet-x86\dotnet" --info
 
       - name: Install .NET 6 x64
         run: |
@@ -23,4 +23,4 @@ jobs:
 
       - name: Verify x64 .NET installation
         run: |
-          "$env:USERPROFILE\.dotnet-x64\dotnet" --info
+          & "$env:USERPROFILE\.dotnet-x64\dotnet" --info
