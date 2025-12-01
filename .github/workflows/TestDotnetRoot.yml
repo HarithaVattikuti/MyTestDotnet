@@ -1,0 +1,27 @@
+name: Test Dotnet Root
+
+on: [workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - name: Print default DOTNET_ROOT
+        run: echo "Before:$DOTNET_ROOT"
+
+      - name: Clear DOTNET_ROOT from GitHub Actions environment
+        run: echo "DOTNET_ROOT=" >> $GITHUB_ENV
+
+      - name: Print after unset
+        run: echo "After unset:$DOTNET_ROOT"
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Show DOTNET_ROOT after setup
+        run: echo "After setup-dotnet:$DOTNET_ROOT"
+
+      - name: Validate dotnet runs
+        run: dotnet --info
