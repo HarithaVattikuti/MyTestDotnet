@@ -8,7 +8,8 @@ jobs:
     
     env:
       DOTNET_INSTALL_DIR: /Users/runner/custom
-      
+      DOTNET_ROOT: /conflicting/path
+
     steps:
       - name: Print default DOTNET_ROOT
         run: echo "Before:$DOTNET_ROOT"
@@ -18,6 +19,9 @@ jobs:
 
       - name: Print after unset
         run: echo "After unset:$DOTNET_ROOT"
+
+      - name: Validate dotnet runs
+        run: dotnet --info
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
@@ -29,3 +33,14 @@ jobs:
 
       - name: Validate dotnet runs
         run: dotnet --info
+
+      - name: Log environment variables
+        run: |
+          echo "DOTNET_INSTALL_DIR: $DOTNET_INSTALL_DIR"
+          echo "DOTNET_ROOT: $DOTNET_ROOT"
+          echo "PATH: $PATH"
+
+      - name: Test with invalid DOTNET_INSTALL_DIR
+        env:
+          DOTNET_INSTALL_DIR: /invalid/path
+        run: dotnet --info || echo "Expected failure with invalid DOTNET_INSTALL_DIR"
