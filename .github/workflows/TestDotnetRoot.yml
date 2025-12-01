@@ -5,6 +5,10 @@ on: [workflow_dispatch]
 jobs:
   test:
     runs-on: macos-latest
+    
+    env:
+      DOTNET_INSTALL_DIR: /Users/runner/custom
+      
     steps:
       - name: Print default DOTNET_ROOT
         run: echo "Before:$DOTNET_ROOT"
