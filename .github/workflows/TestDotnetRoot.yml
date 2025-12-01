@@ -6,24 +6,32 @@ jobs:
   test:
     runs-on: macos-latest
     
-    env:
-      DOTNET_INSTALL_DIR: /Users/runner/custom
-      DOTNET_ROOT: /conflicting/path
+    # env:
+    #   DOTNET_INSTALL_DIR: /Users/runner/custom
+    #   DOTNET_ROOT: /conflicting/path
 
     steps:
       - name: Print default DOTNET_ROOT
-        run: echo "Before:$DOTNET_ROOT"
+        # run: echo "Before:$DOTNET_ROOT"
+        run: |
+          echo "DOTNET_INSTALL_DIR: $DOTNET_INSTALL_DIR"
+          echo "DOTNET_ROOT: $DOTNET_ROOT"
+          echo "PATH: $PATH"
 
-      - name: Validate dotnet runs
+      - name: Validate dotnet info
         run: dotnet --info
         
       - name: Clear DOTNET_ROOT from GitHub Actions environment
         run: echo "DOTNET_ROOT=" >> $GITHUB_ENV
 
       - name: Print after unset
-        run: echo "After unset:$DOTNET_ROOT"
+        # run: echo "After unset:$DOTNET_ROOT"
+        run: |
+          echo "DOTNET_INSTALL_DIR: $DOTNET_INSTALL_DIR"
+          echo "DOTNET_ROOT: $DOTNET_ROOT"
+          echo "PATH: $PATH"
 
-      - name: Validate dotnet runs
+      - name: Validate dotnet info
         run: dotnet --info
 
       - name: Setup .NET
@@ -34,7 +42,7 @@ jobs:
       - name: Show DOTNET_ROOT after setup
         run: echo "After setup-dotnet:$DOTNET_ROOT"
 
-      - name: Validate dotnet runs
+      - name: Validate dotnet info
         run: dotnet --info
 
       - name: Log environment variables
