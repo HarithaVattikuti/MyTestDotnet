@@ -8,23 +8,19 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Install .NET 6 on x86
+      - name: Install .NET 6 x86
         run: |
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture x86 --install-dir $HOME/.dotnet-x86
+          curl -sSL https://dot.net/v1/dotnet-install.ps1 -o dotnet-install.ps1
+          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version 6.0.0 -Architecture x86 -InstallDir $env:USERPROFILE\.dotnet-x86
 
-      - name: Verify .NET installation
-        run: dotnet --info
-        
-      # - name: Add .NET to PATH
-      #   run: echo "$HOME/.dotnet" >> $GITHUB_PATH
-
-      # - name: Verify .NET installation
-      #   run: dotnet --info
-
-      - name: Install .NET 6 on x64
+      - name: Verify x86 .NET installation
         run: |
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture x64 --install-dir $HOME/.dotnet-x64
+          $env:USERPROFILE\.dotnet-x86\dotnet --info
 
-      - name: Verify .NET installation
-        run: dotnet --info
-        
+      - name: Install .NET 6 x64
+        run: |
+          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version 6.0.0 -Architecture x64 -InstallDir $env:USERPROFILE\.dotnet-x64
+
+      - name: Verify x64 .NET installation
+        run: |
+          $env:USERPROFILE\.dotnet-x64\dotnet --info
