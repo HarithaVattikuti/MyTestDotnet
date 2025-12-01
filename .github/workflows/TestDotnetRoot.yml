@@ -20,6 +20,9 @@ jobs:
 
       - name: Validate dotnet info
         run: dotnet --info
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
         
       - name: Clear DOTNET_ROOT from GitHub Actions environment
         run: echo "DOTNET_ROOT=" >> $GITHUB_ENV
@@ -44,7 +47,10 @@ jobs:
 
       - name: Validate dotnet info
         run: dotnet --info
-
+        
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+        
       - name: Log environment variables
         run: |
           echo "DOTNET_INSTALL_DIR: $DOTNET_INSTALL_DIR"
