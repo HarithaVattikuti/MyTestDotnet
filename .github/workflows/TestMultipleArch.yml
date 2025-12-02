@@ -14,29 +14,6 @@ jobs:
     
 
     steps:
-      # # Enable on Macos/linux
-      # - name: Install .NET 6 on ARM64
-      #   run: |
-      #     curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture arm64 --install-dir $HOME/.dotnet-arm64
-
-      # Enable on Windows
-      - name: Install .NET 6 arm64
-        run: |
-          curl -sSL https://dot.net/v1/dotnet-install.ps1 -o dotnet-install.ps1
-          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version 6.0.0 -Architecture arm64 -InstallDir $env:USERPROFILE\.dotnet-arm64
-
-
-      # - name: Add .NET to PATH
-      #   run: echo "$HOME/.dotnet-arm64" >> $GITHUB_PATH
-        
-      # Enable on Macos/Linux
-      # - name: Verify .NET installation
-      #   run: dotnet --info
-      
-      - name: Verify arm64 .NET installation on windows
-        run: |
-          & "$env:USERPROFILE\.dotnet-arm64\dotnet" --info
-
       # Enable on Macos/linux
       # - name: Install .NET 6 on x64
       #   run: |
@@ -60,3 +37,33 @@ jobs:
       #   run: dotnet --info
 
         
+      # Enable on Windows
+      - name: Install .NET 6 x86
+        run: |
+          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version 6.0.0 -Architecture x86 -InstallDir $env:USERPROFILE\.dotnet-x86
+
+      - name: Verify x86 .NET installation on Windows
+        run: |
+          & "$env:USERPROFILE\.dotnet-x86\dotnet" --info
+          
+      # # Enable on Macos/linux
+      # - name: Install .NET 6 on ARM64
+      #   run: |
+      #     curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture arm64 --install-dir $HOME/.dotnet-arm64
+
+      # Enable on Windows
+      - name: Install .NET 6 arm64
+        run: |
+          curl -sSL https://dot.net/v1/dotnet-install.ps1 -o dotnet-install.ps1
+          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version 6.0.0 -Architecture arm64 -InstallDir $env:USERPROFILE\.dotnet-arm64
+
+      # - name: Add .NET to PATH
+      #   run: echo "$HOME/.dotnet-arm64" >> $GITHUB_PATH
+        
+      # Enable on Macos/Linux
+      # - name: Verify .NET installation
+      #   run: dotnet --info
+      
+      - name: Verify arm64 .NET installation on windows
+        run: |
+          & "$env:USERPROFILE\.dotnet-arm64\dotnet" --info
