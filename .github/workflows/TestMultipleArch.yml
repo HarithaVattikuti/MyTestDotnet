@@ -22,6 +22,7 @@ jobs:
       # Enable on Windows
       - name: Install .NET 6 x64
         run: |
+          curl -sSL https://dot.net/v1/dotnet-install.ps1 -o dotnet-install.ps1
           powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version 6.0.0 -Architecture x64 -InstallDir $env:USERPROFILE\.dotnet-x64
 
       - name: Verify x64 .NET installation on Windows
