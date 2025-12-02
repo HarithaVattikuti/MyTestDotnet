@@ -8,14 +8,14 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Install .NET 6 x86
+      - name: Install .NET 6 arm64
         run: |
           curl -sSL https://dot.net/v1/dotnet-install.ps1 -o dotnet-install.ps1
-          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version 6.0.0 -Architecture x86 -InstallDir $env:USERPROFILE\.dotnet-x86
+          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version 6.0.0 -Architecture arm64 -InstallDir $env:USERPROFILE\.dotnet-arm64
 
       - name: Verify x86 .NET installation
         run: |
-          & "$env:USERPROFILE\.dotnet-x86\dotnet" --info
+          & "$env:USERPROFILE\.dotnet-arm64\dotnet" --info
 
       - name: Install .NET 6 x64
         run: |
