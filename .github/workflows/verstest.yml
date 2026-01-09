@@ -17,6 +17,7 @@ jobs:
         with:
           dotnet-version: '8.0.x'
           workloads: wasm-tools
+          cache: true
 
   Test:
     runs-on: windows-latest
@@ -27,3 +28,4 @@ jobs:
         uses: HarithaVattikuti/setup-dotnet@copilot/add-workloads-parameter
         with:
           workloads: wasm-tools
+          cache: true
