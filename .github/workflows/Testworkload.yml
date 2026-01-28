@@ -20,7 +20,7 @@ jobs:
           6.0.x
           8.0.x
           9.0.x
-        workloads: wasm-tools, aspnet, grpc
+        workloads: wasm-tools, blazorwasm
           
 
   
