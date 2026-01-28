@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest,  macos-latest,ubuntu-22.04-arm,windows-11-arm]    
+        os: [ubuntu-latest, windows-latest,macos-15-intel,  macos-latest,ubuntu-22.04-arm,windows-11-arm]    
     
     steps:
     - uses: actions/checkout@v6
@@ -20,7 +20,7 @@ jobs:
           6.0.x
           8.0.x
           9.0.x
-        workloads: wasm-tools, maui
+        workloads: wasm-tools, aspnet, grpc
           
 
   
