@@ -14,6 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v6
 
+    - run: dotnet workload search
+    
     - uses: gowridurgad/setup-dotnet@workloads-input
       with:
         dotnet-version: |
