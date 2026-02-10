@@ -1,4 +1,4 @@
-name: arc test
+name: test architecture
 
 on: 
  workflow_dispatch:
@@ -7,6 +7,7 @@ jobs:
   Architecture:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
             os: [macos-latest, ubuntu-latest, windows-latest,windows-11-arm, macos-15-intel,ubuntu-22.04-arm]
             arch: ['x64', 'arm64','x86']
