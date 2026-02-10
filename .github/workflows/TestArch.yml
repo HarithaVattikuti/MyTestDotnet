@@ -25,7 +25,7 @@ jobs:
 
       - uses: lmvysakh/setup-dotnet@support_architecture
         with:
-         architecture : ${{ matrix.arch }}
+         # architecture : ${{ matrix.arch }}
          dotnet-version: | 
                   9.0.308
                   10.0.101
