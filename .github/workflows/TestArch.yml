@@ -1,7 +1,7 @@
 name: test architecture
 
 on: 
- push:
+ workflow_dispatch:
 
 jobs:
   Architecture:
