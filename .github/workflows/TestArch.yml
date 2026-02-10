@@ -1,7 +1,7 @@
 name: test architecture
 
 on: 
- workflow_dispatch:
+ push:
 
 jobs:
   Architecture:
@@ -16,17 +16,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      # - uses: actions/setup-dotnet@v5
-      #   with:
-      #    dotnet-version: | 
-      #             8.0.x
-      #             8.0.x
-      # - run: dotnet --info
-
-      - uses: lmvysakh/setup-dotnet@support_architecture
+      - uses: actions/setup-dotnet@v5
         with:
-         architecture : ${{ matrix.arch }}
-         dotnet-version: | 
-                  9.0
-                  10.0.1
+          dotnet-version: | 
+                   9.0
+                   10.0.1
       - run: dotnet --info
+
+      # - uses: lmvysakh/setup-dotnet@support_architecture
+      #   with:
+      #    architecture : ${{ matrix.arch }}
+      #    dotnet-version: | 
+      #             9.0
+      #             10.0.1
+      # - run: dotnet --info
