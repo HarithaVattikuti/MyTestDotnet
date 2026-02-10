@@ -1,0 +1,31 @@
+name: arc test
+
+on: 
+ workflow_dispatch:
+
+jobs:
+  Architecture:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+            os: [macos-latest, ubuntu-latest, windows-latest,windows-11-arm, macos-15-intel,ubuntu-22.04-arm]
+            arch: ['x64', 'arm64','x86']
+
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      # - uses: actions/setup-dotnet@v5
+      #   with:
+      #    dotnet-version: | 
+      #             8.0.x
+      #             8.0.x
+      # - run: dotnet --info
+
+      - uses: lmvysakh/setup-dotnet@support_architecture
+        with:
+         architecture : ${{ matrix.arch }}
+         dotnet-version: | 
+                  9.0
+                  10.0.1
+      - run: dotnet --info
