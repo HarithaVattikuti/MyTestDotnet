@@ -1,7 +1,7 @@
 name: Test powershell on container
 
 on:
-  push:
+  workflow_dispatch:
   
 jobs:
   test-proxy:
