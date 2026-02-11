@@ -45,7 +45,7 @@ jobs:
       - name: Write global.json
         shell: bash
         run: |
-          echo '{"sdk":{"version": "10.0.101","rollForward": "latestFeature"}}' > global.json
+          echo '{"sdk":{"version": "10"}}' > global.json
       - uses: lmvysakh/setup-dotnet@support_architecture
         with:
          architecture : ${{ matrix.arch }}
