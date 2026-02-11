@@ -1,7 +1,7 @@
 name: test architecture
 
 on: 
- workflow_dispatch:
+ push:
 
 jobs:
   Architecture:
@@ -25,8 +25,24 @@ jobs:
 
       - uses: lmvysakh/setup-dotnet@support_architecture
         with:
-         # architecture : ${{ matrix.arch }}
+         architecture : ${{ matrix.arch }}
          dotnet-version: | 
                   9.0.308
                   10.0.101
+      - run: dotnet --info
+
+  Defaultcheck:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+            os: [macos-latest, ubuntu-latest, windows-latest]
+            arch: ['x64', 'arm64','x86']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - uses: lmvysakh/setup-dotnet@support_architecture
+        with:
+         architecture : ${{ matrix.arch }}
       - run: dotnet --info
