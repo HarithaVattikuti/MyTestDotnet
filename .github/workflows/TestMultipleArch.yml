@@ -17,13 +17,13 @@ jobs:
       # Enable on Macos/linux
       # - name: Install .NET 6 on x64
       #   run: |
-      #     curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture x64 --install-dir $HOME/.dotnet-x64
+      #     curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version latest --architecture x64 --install-dir $HOME/.dotnet-x64
 
       # Enable on Windows
       - name: Install .NET 6 x64
         run: |
           curl -sSL https://dot.net/v1/dotnet-install.ps1 -o dotnet-install.ps1
-          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version 6.0.0 -Architecture x64 -InstallDir $env:USERPROFILE\.dotnet-x64
+          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version latest -Architecture x64 -InstallDir $env:USERPROFILE\.dotnet-x64
 
       - name: Verify x64 .NET installation on Windows
         run: |
@@ -41,7 +41,7 @@ jobs:
       # Enable on Windows
       - name: Install .NET 6 x86
         run: |
-          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version 6.0.0 -Architecture x86 -InstallDir $env:USERPROFILE\.dotnet-x86
+          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version latest -Architecture x86 -InstallDir $env:USERPROFILE\.dotnet-x86
 
       - name: Verify x86 .NET installation on Windows
         run: |
@@ -50,13 +50,13 @@ jobs:
       # # Enable on Macos/linux
       # - name: Install .NET 6 on ARM64
       #   run: |
-      #     curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version 6.0.0 --architecture arm64 --install-dir $HOME/.dotnet-arm64
+      #     curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --runtime dotnet --version latest --architecture arm64 --install-dir $HOME/.dotnet-arm64
 
       # Enable on Windows
       - name: Install .NET 6 arm64
         run: |
           curl -sSL https://dot.net/v1/dotnet-install.ps1 -o dotnet-install.ps1
-          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version 6.0.0 -Architecture arm64 -InstallDir $env:USERPROFILE\.dotnet-arm64
+          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Runtime dotnet -Version latest -Architecture arm64 -InstallDir $env:USERPROFILE\.dotnet-arm64
 
       # - name: Add .NET to PATH
       #   run: echo "$HOME/.dotnet-arm64" >> $GITHUB_PATH
