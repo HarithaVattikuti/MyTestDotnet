@@ -10,16 +10,18 @@ jobs:
       fail-fast: false
       matrix:
             os: [windows-latest]
-            # arch: ['x64', 'arm64','x86']
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
       - uses: actions/setup-dotnet@v5
         with:
-          dotnet: |
+          dotnet-version: | 
             9.0.308
-      - run: dotnet --info
+      -   run: |
+           where.exe dotnet
+           $env:PATH
+           dotnet --info
 
   Archcheck:
     runs-on: ${{ matrix.os }}
@@ -27,8 +29,6 @@ jobs:
       fail-fast: false
       matrix:
             os: [windows-latest]
-            # arch: ['x64', 'arm64','x86']
-
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -37,4 +37,7 @@ jobs:
          architecture : 'x86'
          dotnet-version: | 
                   9.0.308
-      - run: dotnet --info
+      - run: |
+         where.exe dotnet
+         $env:PATH
+         dotnet --info
