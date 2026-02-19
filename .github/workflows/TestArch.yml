@@ -15,13 +15,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - run: dotnet --info
+      - run: |
+          where.exe dotnet
+          $env:PATH
+          dotnet --info
       - uses: actions/setup-dotnet@v5
         with:
          dotnet-version: | 
                   9.0.308
                   10.0.101
-      - run: dotnet --info
+      - run: |
+          where.exe dotnet
+          $env:PATH
+          dotnet --info
 
   Archcheck:
     runs-on: ${{ matrix.os }}
@@ -34,7 +40,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - run: dotnet --info
+      - run: |
+          where.exe dotnet
+          $env:PATH
+          dotnet --info
 
       # - name: Write global.json
       #   shell: bash
@@ -46,4 +55,7 @@ jobs:
          dotnet-version: | 
                   9.0.308
                   10.0.101
-      - run: dotnet --info
+      - run: |
+          where.exe dotnet
+          $env:PATH
+          dotnet --info
