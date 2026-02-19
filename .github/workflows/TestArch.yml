@@ -15,6 +15,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - run: dotnet --info
       - uses: actions/setup-dotnet@v5
         with:
          dotnet-version: | 
@@ -33,11 +34,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - run: dotnet --info
+
       # - name: Write global.json
       #   shell: bash
       #   run: |
       #     echo '{"sdk":{"version": "10"}}' > global.json
-      - uses: lmvysakh/setup-dotnet@support_architecture
+      - uses: lmvysakh/setup-dotnet@implement_architecture_support
         with:
          architecture : ${{ matrix.arch }}
          dotnet-version: | 
