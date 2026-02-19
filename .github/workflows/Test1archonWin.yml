@@ -4,24 +4,6 @@ on:
  push:
 
 jobs:
-  # Defaultcheck:
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #           os: [windows-latest]
-
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v6
-  #     - uses: actions/setup-dotnet@v5
-  #       with:
-  #         dotnet-version: | 
-  #           9.0.308
-  #     -   run: |
-  #          where.exe dotnet
-  #          $env:PATH
-  #          dotnet --info
 
   Archcheck:
     runs-on: ${{ matrix.os }}
@@ -29,23 +11,17 @@ jobs:
       fail-fast: false
       matrix:
             os: [windows-latest]
+            arch: ['x64','x86']
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - uses: lmvysakh/setup-dotnet@support_architecture
+      - uses: lmvysakh/setup-dotnet@implement_architecture_support 
         with:
-         architecture : 'x86'
+         architecture : ${{ matrix.arch }}
          dotnet-version: | 
                   9.0.308
                   
-      # Force the session to use the toolcache dotnet, not C:\Program Files\dotnet
-      - name: Force DOTNET_ROOT and PATH
-        shell: pwsh
-        run: |
-          $dotnetRoot = Join-Path $env:RUNNER_TOOL_CACHE "dotnet"
-          "DOTNET_ROOT=$dotnetRoot" | Out-File -FilePath $env:GITHUB_ENV -Append
-          "$dotnetRoot"            | Out-File -FilePath $env:GITHUB_PATH -Append
-      
-          # Diagnostics
-          where.exe dotnet
-          dotnet --info
+      - run: |
+                 where.exe dotnet
+                 $env:PATH
+                 dotnet --info
