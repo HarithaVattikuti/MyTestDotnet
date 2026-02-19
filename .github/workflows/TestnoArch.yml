@@ -1,0 +1,53 @@
+name: test without architecture
+
+on: 
+ push:
+
+jobs:
+  Defaultcheck:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+            os: [macos-latest, ubuntu-latest, windows-latest,windows-11-arm, macos-15-intel,ubuntu-22.04-arm]
+            # arch: ['x64', 'arm64','x86']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - run: |
+          dotnet --info
+      - uses: actions/setup-dotnet@v5
+        with:
+         dotnet-version: | 
+                  9.0.308
+                  10.0.101
+      - run: |
+          dotnet --info
+
+  Archcheck:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+            os: [macos-latest, ubuntu-latest, windows-latest,windows-11-arm, macos-15-intel,ubuntu-22.04-arm]
+            # arch: ['x64', 'arm64','x86']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - run: |
+          dotnet --info
+
+      # - name: Write global.json
+      #   shell: bash
+      #   run: |
+      #     echo '{"sdk":{"version": "10"}}' > global.json
+      - uses: lmvysakh/setup-dotnet@implement_architecture_support
+        with:
+         # architecture : ${{ matrix.arch }}
+         dotnet-version: | 
+                  9.0.308
+                  10.0.101
+      - run: |
+          dotnet --info
