@@ -11,7 +11,7 @@ jobs:
   #   strategy:
   #     fail-fast: false
   #     matrix:
-  #       os: [ubuntu-latest,ubuntu-22.04, windows-latest, windows-2019, macos-13, macos-latest,ubuntu-24.04-arm,ubuntu-22.04-arm,windows-11-arm]    
+  #       os: [ubuntu-latest,ubuntu-22.04, windows-latest, macos-15-intel, macos-latest,ubuntu-24.04-arm,ubuntu-22.04-arm,windows-11-arm]    
     
   #   steps:
   #   - uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest,ubuntu-22.04, windows-latest, windows-2019, macos-13, macos-latest,ubuntu-24.04-arm,ubuntu-22.04-arm,windows-11-arm]    
+        os: [ubuntu-latest,ubuntu-22.04, windows-latest,  macos-15-intel, macos-latest,ubuntu-24.04-arm,ubuntu-22.04-arm,windows-11-arm]    
     
     steps:
     - uses: actions/checkout@v4
@@ -40,6 +40,6 @@ jobs:
         dotnet-version: |
           6.x
           8.x
-          9.x
-          10.x
+          9.0.13
+          10.0.2
           3.x
