@@ -2,36 +2,89 @@ name: test architecture
 
 on: 
  push:
+  branches:
+    - TestArch
 
 jobs:
-  Defaultcheck:
+  Defaultcheckonv4:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-            os: [macos-latest, ubuntu-latest, windows-latest,windows-11-arm, macos-15-intel,ubuntu-22.04-arm]
-            arch: ['x64', 'arm64','x86']
+            os: [ windows-latest]
+            # arch: ['x64', 'arm64','x86']
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
       - run: |
           dotnet --info
-      - uses: actions/setup-dotnet@v5
+      - name: Setup .NET x86
+        uses: actions/setup-dotnet@v4
+        env:
+          PROCESSOR_ARCHITECTURE: x86
+          DOTNET_INSTALL_DIR: C:\Program Files (x86)\dotnet
         with:
-         dotnet-version: | 
-                  9.0.308
-                  10.0.101
+          dotnet-version: 8.0.x
+      - run: |
+          dotnet --info      
+      # Copy DOTNET_ROOT from the above step to DOTNET_ROOT(x86), the next step will overwrite DOTNET_ROOT to refer to the 64-bit installation
+      - name: Set DOTNET_ROOT(x86)
+        shell: pwsh
+        run: |
+          echo "DOTNET_ROOT(x86)=${env:DOTNET_ROOT}" | Out-File -FilePath $env:GITHUB_ENV -Append
+      - run: |
+          dotnet --info
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
       - run: |
           dotnet --info
 
+  Defaultcheckonv5:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+            os: [ windows-latest]
+            # arch: ['x64', 'arm64','x86']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - run: |
+          dotnet --info
+      - name: Setup .NET x86
+        uses: actions/setup-dotnet@v5
+        env:
+          PROCESSOR_ARCHITECTURE: x86
+          DOTNET_INSTALL_DIR: C:\Program Files (x86)\dotnet
+        with:
+          dotnet-version: 8.0.x
+      - run: |
+          dotnet --info      
+      # Copy DOTNET_ROOT from the above step to DOTNET_ROOT(x86), the next step will overwrite DOTNET_ROOT to refer to the 64-bit installation
+      - name: Set DOTNET_ROOT(x86)
+        shell: pwsh
+        run: |
+          echo "DOTNET_ROOT(x86)=${env:DOTNET_ROOT}" | Out-File -FilePath $env:GITHUB_ENV -Append
+      - run: |
+          dotnet --info
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 8.0.x
+      - run: |
+          dotnet --info
+          
   Archcheck:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-            os: [macos-latest, ubuntu-latest, windows-latest,windows-11-arm, macos-15-intel,ubuntu-22.04-arm]
-            arch: ['x64', 'arm64','x86']
+            os: [windows-latest]
+            # arch: ['x64', 'arm64','x86']
 
     steps:
       - name: Checkout
@@ -43,11 +96,18 @@ jobs:
       #   shell: bash
       #   run: |
       #     echo '{"sdk":{"version": "10"}}' > global.json
-      - uses: lmvysakh/setup-dotnet@implement_architecture_support
+      - uses: actions/setup-dotnet@v5
         with:
-         architecture : ${{ matrix.arch }}
-         dotnet-version: | 
-                  9.0.308
-                  10.0.101
+         architecture : 'x86'
+         dotnet-version: 8.0.x
+
       - run: |
           dotnet --info
+          
+      - uses: actions/setup-dotnet@v5
+        with:
+         dotnet-version: 8.0.x
+
+      - run: |
+          dotnet --info
+          
