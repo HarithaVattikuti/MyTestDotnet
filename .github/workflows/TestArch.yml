@@ -96,6 +96,7 @@ jobs:
       #   shell: bash
       #   run: |
       #     echo '{"sdk":{"version": "10"}}' > global.json
+      
       - uses: actions/setup-dotnet@v5
         with:
          architecture : 'x86'
