@@ -1,6 +1,7 @@
 name: test architecture
 
 on: 
+ workflow_dispatch: 
  push:
   branches:
     - TestArch
