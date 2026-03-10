@@ -23,7 +23,7 @@ jobs:
       - name: Install .NET 6 x64
         run: |
           curl -sSL https://dot.net/v1/dotnet-install.ps1 -o dotnet-install.ps1
-          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 --skip-non-versioned-files --runtime dotnet --channel LTS
+          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 -Channel LTS
 
       # - name: Verify x64 .NET installation on Windows
       #   run: |
