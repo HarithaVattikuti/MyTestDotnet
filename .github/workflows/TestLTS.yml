@@ -10,20 +10,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest,ubuntu-22.04, macos-latest,ubuntu-24.04-arm,ubuntu-22.04-arm, macos-15-intel] # [windows-latest,windows-11-arm ]  
+        os: [windows-latest] # [ubuntu-latest,ubuntu-22.04, macos-latest,ubuntu-24.04-arm,ubuntu-22.04-arm, macos-15-intel] # [windows-latest,windows-11-arm ]  
     
 
     steps:
       # Enable on Macos/linux
-      - name: Install .NET 6 on x64
-        run: |
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --runtime dotnet --channel LTS
+      # - name: Install .NET 6 on x64
+      #   run: |
+      #     curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --runtime dotnet --channel LTS
 
       # Enable on Windows
-      # - name: Install .NET 6 x64
-      #   run: |
-      #     curl -sSL https://dot.net/v1/dotnet-install.ps1 -o dotnet-install.ps1
-      #     powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 --skip-non-versioned-files --runtime dotnet --channel LTS
+      - name: Install .NET 6 x64
+        run: |
+          curl -sSL https://dot.net/v1/dotnet-install.ps1 -o dotnet-install.ps1
+          powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 --skip-non-versioned-files --runtime dotnet --channel LTS
 
       # - name: Verify x64 .NET installation on Windows
       #   run: |
@@ -48,22 +48,22 @@ jobs:
       #     & "$env:USERPROFILE\.dotnet-x86\dotnet" --info
           
       # # Enable on Macos/linux
-      - name: Install .NET 6 on ARM64
-        run: |
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --runtime dotnet --channel LTS
-
-      # Enable on Windows
-      # - name: Install .NET 6 arm64
+      # - name: Install .NET 6 on ARM64
       #   run: |
-      #     curl -sSL https://dot.net/v1/dotnet-install.ps1 -o dotnet-install.ps1
-      #     powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 --skip-non-versioned-files --runtime dotnet --channel LTS
+      #     curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --runtime dotnet --channel LTS
 
-      # - name: Add .NET to PATH
-      #   run: echo "$HOME/.dotnet-arm64" >> $GITHUB_PATH
+      # # Enable on Windows
+      # # - name: Install .NET 6 arm64
+      # #   run: |
+      # #     curl -sSL https://dot.net/v1/dotnet-install.ps1 -o dotnet-install.ps1
+      # #     powershell -ExecutionPolicy Bypass -File dotnet-install.ps1 --skip-non-versioned-files --runtime dotnet --channel LTS
+
+      # # - name: Add .NET to PATH
+      # #   run: echo "$HOME/.dotnet-arm64" >> $GITHUB_PATH
         
-      # Enable on Macos/Linux
-      - name: Verify .NET installation
-        run: dotnet --info
+      # # Enable on Macos/Linux
+      # - name: Verify .NET installation
+      #   run: dotnet --info
       
       # - name: Verify arm64 .NET installation on windows
       #   run: |
