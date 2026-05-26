@@ -15,15 +15,9 @@ jobs:
         os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v6
-      - name: Write global.json
-        shell: bash
+      - name: Install .NET
         run: |
-          mkdir -p subdirectory
-          echo '{"sdk": [{"version": "7.0.200", "rollForward": "latestMajor"}]}' > ./subdirectory/global.json
-
-      - name: Install .NET 6 on x64
-        run: |
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --jsonfile ./subdirectory/global.json 
+          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --jsonfile ./global.json 
 
       # - name: Setup dotnet
       #   uses: js6pak/setup-dotnet@feat/support-rollForward
