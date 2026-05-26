@@ -44,4 +44,4 @@ jobs:
         with:
           dotnet-version: latest
           dotnet-channel: STS
-          global-json-file: ./subdirectory/global.json
+          # global-json-file: ./subdirectory/global.json
