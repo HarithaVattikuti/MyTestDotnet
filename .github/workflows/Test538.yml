@@ -23,7 +23,7 @@ jobs:
 
       - name: Install .NET 6 on x64
         run: |
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --jsonfile ./subdirectory/global.json 
+          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --globaljson ./subdirectory/global.json 
           # --version latest --channel STS
 
       # - name: Setup dotnet
