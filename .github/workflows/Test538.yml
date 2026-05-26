@@ -19,7 +19,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p subdirectory
-          echo '{"sdk": {"version": "7.0.200", "rollForward": "latestMajor"}}' > ./subdirectory/global.json
+          echo '{"sdk": [{"version": "7.0.200", "rollForward": "latestMajor"}]}' > ./subdirectory/global.json
 
       - name: Install .NET 6 on x64
         run: |
