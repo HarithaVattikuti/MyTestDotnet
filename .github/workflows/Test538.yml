@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v6
       - name: Install .NET
         run: |
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --jsonfile ./global.json 
+          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --jsonfile ./global.json --runtime dotnet --version latest --channel LTS 
 
       # - name: Setup dotnet
       #   uses: js6pak/setup-dotnet@feat/support-rollForward
