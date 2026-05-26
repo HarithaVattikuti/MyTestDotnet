@@ -17,7 +17,9 @@ jobs:
       - uses: actions/checkout@v6
       - name: Install .NET
         run: |
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --jsonfile ./global.json --version latest --channel STS 
+          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --jsonfile ./global.json 
+          
+      # --version latest --channel STS 
 
       # - name: Setup dotnet
       #   uses: js6pak/setup-dotnet@feat/support-rollForward
@@ -25,7 +27,7 @@ jobs:
       #     dotnet-version: latest
       #     dotnet-channel: STS
       #     global-json-file: ./subdirectory/global.json
-  
+      
   # rf-dotnet-sts:
   #   name: "latestMajor + channel:STS | ${{ matrix.os }}"
   #   runs-on: ${{ matrix.os }}
