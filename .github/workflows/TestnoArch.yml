@@ -1,7 +1,7 @@
 name: test without architecture
 
 on: 
- push:
+ workflow_dispatch:
 
 jobs:
   Defaultcheck:
