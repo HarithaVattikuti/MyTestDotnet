@@ -1,11 +1,13 @@
 name: Test rollForward
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - t538
 
 jobs:
   rf-channel-sts:
-    name: "latestMajor + channel:STS | ${{ matrix.os }}"
+    # name: "latestMajor + channel:STS | ${{ matrix.os }}"
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -18,30 +20,35 @@ jobs:
         run: |
           mkdir -p subdirectory
           echo '{"sdk":{"version":"3.0.100","rollForward":"latestMajor"}}' > ./subdirectory/global.json
-      - name: Setup dotnet
-        uses: js6pak/setup-dotnet@feat/support-rollForward
-        with:
-          dotnet-version: latest
-          dotnet-channel: STS
-          global-json-file: ./subdirectory/global.json
+
+      - name: Install .NET 6 on x64
+        run: |
+          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --jsonfile ./subdirectory/global.json --version latest --channel STS
+
+      # - name: Setup dotnet
+      #   uses: js6pak/setup-dotnet@feat/support-rollForward
+      #   with:
+      #     dotnet-version: latest
+      #     dotnet-channel: STS
+      #     global-json-file: ./subdirectory/global.json
   
-  rf-dotnet-sts:
-    name: "latestMajor + channel:STS | ${{ matrix.os }}"
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v6
-      # - name: Write global.json
-      #   shell: bash
-      #   run: |
-      #     mkdir -p subdirectory
-      #     echo '{"sdk":{"version":"3.0.100","rollForward":"latestMajor"}}' > ./subdirectory/global.json
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@main
-        with:
-          dotnet-version: latest
-          dotnet-channel: STS
-          # global-json-file: ./subdirectory/global.json
+  # rf-dotnet-sts:
+  #   name: "latestMajor + channel:STS | ${{ matrix.os }}"
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       os: [ubuntu-latest]
+  #   steps:
+  #     - uses: actions/checkout@v6
+  #     # - name: Write global.json
+  #     #   shell: bash
+  #     #   run: |
+  #     #     mkdir -p subdirectory
+  #     #     echo '{"sdk":{"version":"3.0.100","rollForward":"latestMajor"}}' > ./subdirectory/global.json
+  #     - name: Setup dotnet
+  #       uses: actions/setup-dotnet@main
+  #       with:
+  #         dotnet-version: latest
+  #         dotnet-channel: STS
+  #         # global-json-file: ./subdirectory/global.json
