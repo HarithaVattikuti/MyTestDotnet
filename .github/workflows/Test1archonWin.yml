@@ -1,7 +1,7 @@
 name: test single architecture on windows
 
 on: 
- push:
+ workflow_dispatch:
 
 jobs:
 
