@@ -21,7 +21,7 @@ jobs:
       - name: Setup dotnet
         uses: js6pak/setup-dotnet@feat/support-rollForward
         with:
-          dotnet-version: latest
+          # dotnet-version: latest
           dotnet-channel: STS
           global-json-file: ./subdirectory/global.json
   
@@ -40,8 +40,8 @@ jobs:
           mkdir -p subdirectory
           echo '{"sdk":{"version":"3.0.100","rollForward":"latestMajor"}}' > ./subdirectory/global.json
       - name: Setup dotnet
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@main
         with:
-          dotnet-version: latest
+          # dotnet-version: latest
           dotnet-channel: STS
           global-json-file: ./subdirectory/global.json
