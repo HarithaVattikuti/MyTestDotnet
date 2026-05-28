@@ -17,12 +17,12 @@ jobs:
         shell: bash
         run: |
           mkdir -p subdirectory
-          echo '{"sdk":{"version":"3.0.100","rollForward":"latestMajor"}}' > ./subdirectory/global.json
+          echo '{"sdk":{"version":"8.0","rollForward":"latestMajor"}}' > ./subdirectory/global.json
       - name: Setup dotnet
         uses: js6pak/setup-dotnet@feat/support-rollForward
         with:
           dotnet-version: latest
-          dotnet-channel: STS
+          dotnet-channel: LTS
           global-json-file: ./subdirectory/global.json
   
   rf-dotnet-sts:
