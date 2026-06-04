@@ -1,0 +1,43 @@
+name: Test CSC problem matcher PR branch
+
+on:
+  push:
+    branches:
+      t717
+
+jobs:
+  test-problem-matcher_main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout test repo
+        uses: actions/checkout@v6
+
+      - name: Setup .NET using PR branch
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Show SDK info
+        run: dotnet --info
+
+      - name: Build broken project to emit CSC errors
+        run: dotnet build ./MyTestDotnet.csproj
+        
+  test-problem-matcher:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout test repo
+        uses: actions/checkout@v6
+
+      - name: Setup .NET using PR branch
+        uses: StephenCleary/setup-dotnet@fix-csc-problem-matcher
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Show SDK info
+        run: dotnet --info
+
+      - name: Build broken project to emit CSC errors
+        run: dotnet build ./MyTestDotnet.csproj
