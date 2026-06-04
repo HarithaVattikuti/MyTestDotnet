@@ -1,7 +1,9 @@
 name: Compare setup-dotnet CSC matcher
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - t717
 
 jobs:
   test-problem-matcher_main:
