@@ -1,43 +1,71 @@
-name: Test CSC problem matcher PR branch
+name: Compare setup-dotnet CSC matcher
 
 on:
-  push:
-    branches:
-      t717
+  workflow_dispatch:
 
 jobs:
   test-problem-matcher_main:
-    runs-on: ubuntu-latest
-
+    runs-on: windows-latest
     steps:
-      - name: Checkout test repo
+      - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup .NET using PR branch
+      - name: Use setup-dotnet main
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '8.0.x'
 
-      - name: Show SDK info
-        run: dotnet --info
+      - name: Emit matcher test lines
+        shell: pwsh
+        run: |
+          Write-Host "Regular CSC error - should match both"
+          Write-Host "Program.cs(10,79): error CS1002: ; expected [D:\a\MyTestDotnet\MyTestDotnet\MyTestDotnet.csproj]"
 
-      - name: Build broken project to emit CSC errors
-        run: dotnet build ./MyTestDotnet.csproj
-        
+          Write-Host ""
+          Write-Host "Indented CSC error - old matcher may miss"
+          Write-Host "  Program.cs(11,8): error CS1014: A get or set accessor expected [D:\a\MyTestDotnet\MyTestDotnet\MyTestDotnet.csproj]"
+
+          Write-Host ""
+          Write-Host "MSBuild-prefixed CSC error - old matcher may miss"
+          Write-Host "20>Program.cs(12,2): error CS1513: } expected [D:\a\MyTestDotnet\MyTestDotnet\MyTestDotnet.csproj]"
+
+          Write-Host ""
+          Write-Host "Indented + MSBuild-prefixed CSC error - old matcher may miss"
+          Write-Host "    20>Program.cs(13,2): error CS1519: Invalid token ')' in class, record, struct, or interface member declaration [D:\a\MyTestDotnet\MyTestDotnet\MyTestDotnet.csproj]"
+
+          Write-Host ""
+          Write-Host "dotnet format-style non-numeric code - old matcher should miss"
+          Write-Host "Program.cs(14,5): error WHITESPACE: Fix whitespace formatting. Delete 1 characters. [D:\a\MyTestDotnet\MyTestDotnet\MyTestDotnet.csproj]"
+
   test-problem-matcher:
-    runs-on: ubuntu-latest
-
+    runs-on: windows-latest
     steps:
-      - name: Checkout test repo
-        uses: actions/checkout@v6
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup .NET using PR branch
+      - name: Use PR branch matcher
         uses: StephenCleary/setup-dotnet@fix-csc-problem-matcher
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '8.0.x'
 
-      - name: Show SDK info
-        run: dotnet --info
+      - name: Emit matcher test lines
+        shell: pwsh
+        run: |
+          Write-Host "Regular CSC error - should match both"
+          Write-Host "Program.cs(10,79): error CS1002: ; expected [D:\a\MyTestDotnet\MyTestDotnet\MyTestDotnet.csproj]"
 
-      - name: Build broken project to emit CSC errors
-        run: dotnet build ./MyTestDotnet.csproj
+          Write-Host ""
+          Write-Host "Indented CSC error - old matcher may miss"
+          Write-Host "  Program.cs(11,8): error CS1014: A get or set accessor expected [D:\a\MyTestDotnet\MyTestDotnet\MyTestDotnet.csproj]"
+
+          Write-Host ""
+          Write-Host "MSBuild-prefixed CSC error - old matcher may miss"
+          Write-Host "20>Program.cs(12,2): error CS1513: } expected [D:\a\MyTestDotnet\MyTestDotnet\MyTestDotnet.csproj]"
+
+          Write-Host ""
+          Write-Host "Indented + MSBuild-prefixed CSC error - old matcher may miss"
+          Write-Host "    20>Program.cs(13,2): error CS1519: Invalid token ')' in class, record, struct, or interface member declaration [D:\a\MyTestDotnet\MyTestDotnet\MyTestDotnet.csproj]"
+
+          Write-Host ""
+          Write-Host "dotnet format-style non-numeric code - old matcher should miss"
+          Write-Host "Program.cs(14,5): error WHITESPACE: Fix whitespace formatting. Delete 1 characters. [D:\a\MyTestDotnet\MyTestDotnet\MyTestDotnet.csproj]"
