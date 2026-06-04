@@ -8,8 +8,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        string text = 123;
-        Console.WriteLine(DoesNotExist);
-        MissingMethod(
+         int number = "abc";
+         var value = UnknownIdentifier + 1
     }
 }
