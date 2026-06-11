@@ -44,6 +44,9 @@ jobs:
           echo '{"sdk":{"version":"3.0.100","rollForward":"latestMinor"}}' > ./subdirectory/global.json
       - name: Setup dotnet
         uses: actions/setup-dotnet@v5
+        with:
+          global-json-file: global.json
+
         # with:
         #   dotnet-version: latest
         #   dotnet-channel: STS
