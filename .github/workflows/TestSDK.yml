@@ -6,24 +6,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  # buildonlatest:
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       os: [ubuntu-latest,ubuntu-22.04, windows-latest, macos-15-intel, macos-latest,ubuntu-24.04-arm,ubuntu-22.04-arm,windows-11-arm]    
+  buildonlatest:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]    
     
-  #   steps:
-  #   - uses: actions/checkout@v4
+    steps:
+    - uses: actions/checkout@v4
 
-  #   - uses: actions/setup-dotnet@v4
-  #     with:
-  #       dotnet-version: |
-  #         6.x
-  #         8.0.x
-  #         9.0.x
-  #         10.0.x
-  #         3.1.x
+    - uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.x
+          8.0.x
+          9.0.x
+          10.0.x
+          3.1.x
 
   testonlatest:
     runs-on: ${{ matrix.os }}
@@ -35,7 +35,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - uses: actions/setup-dotnet@main
+    - uses: priyagupta108/setup-dotnet@validate-global-json-sdk-version
       with:
         dotnet-version: |
           6.x
