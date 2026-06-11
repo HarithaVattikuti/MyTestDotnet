@@ -37,11 +37,11 @@ jobs:
         os: ["ubuntu-latest","windows-latest","macos-15-intel","macos-latest"]
     steps:
       - uses: actions/checkout@v6
-      # - name: Write global.json
-      #   shell: bash
-      #   run: |
-      #     mkdir -p subdirectory
-      #     echo '{"sdk":{"version":"3.0.100","rollForward":"latestMajor"}}' > ./subdirectory/global.json
+      - name: Write global.json
+        shell: bash
+        run: |
+          mkdir -p subdirectory
+          echo '{"sdk":{"version":"3.0.100","rollForward":"latestMinor"}}' > ./subdirectory/global.json
       - name: Setup dotnet
         uses: actions/setup-dotnet@v5
         # with:
