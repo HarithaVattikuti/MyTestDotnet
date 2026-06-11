@@ -40,6 +40,6 @@ jobs:
         dotnet-version: |
           6.x
           8.x
-          9.0.13
+          8.0.1xx
           10.0.2
           3.x
