@@ -18,12 +18,24 @@ jobs:
       - run: dotnet --list-sdks
 
   invalid-two-part-prerelease:
-    name: "Invalid: 8.0-preview.1"
+    name: "Invalid: 8.0"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: echo '{"sdk":{"version":"8.0-preview.1"}}' > global.json
+      - run: echo '{"sdk":{"version":"8.0"}}' > global.json
       - uses: priyagupta108/setup-dotnet@validate-global-json-sdk-version
+        id: setup
+        continue-on-error: true
+        with:
+          global-json-file: global.json
+          
+  two-part-prerelease:
+    name: "Invalid: 8.0"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: echo '{"sdk":{"version":"8.0"}}' > global.json
+      - uses: actions/setup-dotnet@v5
         id: setup
         continue-on-error: true
         with:
