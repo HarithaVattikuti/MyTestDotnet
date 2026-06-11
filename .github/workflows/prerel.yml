@@ -1,0 +1,30 @@
+name: Test prerelease
+
+on:
+  push:
+    branches:
+      - t538
+
+jobs:
+  validate-11-preview-4:
+    name: "Validate 11.0.100-preview.4.26230.115"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: echo '{"sdk":{"version":"11.0.100-preview.4.26230.115"}}' > global.json
+      - uses: priyagupta108/setup-dotnet@validate-global-json-sdk-version
+        with:
+          global-json-file: global.json
+      - run: dotnet --list-sdks
+
+  invalid-two-part-prerelease:
+    name: "Invalid: 8.0-preview.1"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: echo '{"sdk":{"version":"8.0-preview.1"}}' > global.json
+      - uses: priyagupta108/setup-dotnet@validate-global-json-sdk-version
+        id: setup
+        continue-on-error: true
+        with:
+          global-json-file: global.json
