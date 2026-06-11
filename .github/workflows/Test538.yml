@@ -6,28 +6,7 @@ on:
       - t538
 
 jobs:
-  # rf-channel-sts:
-  #   # name: "latestMajor + channel:STS | ${{ matrix.os }}"
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       os: [ubuntu-latest]
-  #   steps:
-  #     - uses: actions/checkout@v6
-  #     - name: Install .NET
-  #       run: |
-  #         curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --skip-non-versioned-files --jsonfile ./global.json 
-          
-  #     # --version latest --channel STS 
-
-  #     # - name: Setup dotnet
-  #     #   uses: js6pak/setup-dotnet@feat/support-rollForward
-  #     #   with:
-  #     #     dotnet-version: latest
-  #     #     dotnet-channel: STS
-  #     #     global-json-file: ./subdirectory/global.json
-      
+ 
   rf-dotnet-lmin:
     name: "latestMinor"
     runs-on: ${{ matrix.os }}
@@ -106,7 +85,7 @@ jobs:
           mkdir -p subdirectory
           echo '{"sdk":{"version":"3.0.100","rollForward":"latestPatch"}}' > ./subdirectory/global.json
       - name: Setup dotnet
-        uses: actions/setup-dotnet@v5
+        uses: priyagupta108/setup-dotnet@validate-global-json-sdk-version
         with:
         #   dotnet-version: latest
         #   dotnet-channel: STS
