@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
-        vers: ['9.0.316', '10.0.110','8.0.423']
+        vers: ['9.0.315', '10.0.109','8.0.422']
 
     steps:
       - name: Checkout repository
@@ -28,7 +28,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
-        vers: ['9.0.316', '10.0.110','8.0.423']
+        vers: ['9.0.315', '10.0.109','8.0.422']
 
     steps:
       - name: Checkout repository
