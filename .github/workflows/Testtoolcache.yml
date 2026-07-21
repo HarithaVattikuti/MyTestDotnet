@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
-        vers: ['9.0.315', '10.0.109','8.0.422']
+        vers: ['9.0.x', '10.0.x','8.0.x']
 
     steps:
       - name: Checkout repository
@@ -22,18 +22,18 @@ jobs:
           dotnet-version: ${{ matrix.vers }}
           
 
-  testv4:
+  testv5:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
-        vers: ['9.0.315', '10.0.109','8.0.422']
+        vers: ['9.0.x', '10.0.x','8.0.x']
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
       - name: Set up .NET SDK
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: ${{ matrix.vers }}
