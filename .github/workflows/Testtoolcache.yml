@@ -1,0 +1,39 @@
+name: Test tool cache version
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  testv6:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        vers: ['9.0.316', '10.0.110','8.0.423']
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: ${{ matrix.vers }}
+          
+
+  testv4:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        vers: ['9.0.316', '10.0.110','8.0.423']
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.vers }}
